@@ -1,5 +1,5 @@
 
-#The following Powershell script preps server the way I like it for testing
+#The following Powershell example script preps server and is used for deployment
 
 #Functions
 function Disable-InternetExplorerESC {
@@ -26,11 +26,14 @@ function Disable-UserAccessControl {
 #Main
 
 #Initial configuration of Windows Firewall to cover all bases
-New-NetFirewallRule -DisplayName 'HTTP(S) Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443', '81')
-New-NetFirewallRule -DisplayName 'Custom Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8400-8410
+New-NetFirewallRule -DisplayName 'Various Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443', '81')
+New-NetFirewallRule -DisplayName 'Commvault Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8400-8410
 
 #Install IIS
 Install-WindowsFeature -Name Web-Server
+#Install .NET 3.5
 Install-WindowsFeature Net-Framework-Core
+
+#Disable UAC and Internet Exploere
 Disable-UserAccessControl
-Disable-InternetExplorerESC 
+Disable-InternetExplorerESC
