@@ -37,3 +37,6 @@ Install-WindowsFeature Net-Framework-Core
 #Disable UAC and Internet Exploere
 Disable-UserAccessControl
 Disable-InternetExplorerESC
+
+#Disable Windows Defender AV Realtime Monitoring
+Set-MpPreference -DisableRealtimeMonitoring $true
