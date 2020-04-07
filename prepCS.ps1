@@ -40,3 +40,7 @@ Disable-InternetExplorerESC
 
 #Disable Windows Defender AV Realtime Monitoring
 Set-MpPreference -DisableRealtimeMonitoring $true
+
+#Download and install Chrome
+$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+
