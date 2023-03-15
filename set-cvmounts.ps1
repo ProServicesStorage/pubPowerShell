@@ -1,7 +1,8 @@
-# Change Mount Paths in bulk
-#Types are 4 for read, 6 for read/write, 14 for read/write/preferred
-#Usage ./set-cvmount.ps1 -libraryName MyLibrary -inputfile c:\scripts\listofmounts.txt -mediaAgent myMA -type 4
-#The input file should be one mount path per line. 
+# Change Mount Paths in bulk. 
+# IHAC that has a disk library with 50+ mount paths. I want to update the share settings so that the alternate MAs only have Read access, not Read/Write
+# Types are 4 for read, 6 for read/write, 14 for read/write/preferred
+# Usage ./set-cvmount.ps1 -libraryName MyLibrary -inputfile c:\scripts\listofmounts.txt -mediaAgent myMA -type 4
+# The input file should be one mount path per line. 
 
 
 param ([String] $libraryName, [String] $inputfile, [String] $mediaAgent, [int] $type )
